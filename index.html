@@ -1,182 +1,210 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lets make basic calculator using java-script</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lets make basic calculator using java-script</title>
   <style>
-     * {
-     font-family: sans-serif;
- }
+    * {
+      font-family: sans-serif;
+    }
 
- h1 {
-     text-align: center;
-     font-family: Arial, Helvetica, sans-serif;
-     text-transform: uppercase;
-     color: goldenrod;
- }
+    h1 {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      color: goldenrod;
+    }
 
- .container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     gap: 100px;
- }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 100px;
+    }
 
- button {
-     width: 300px;
- }
+    button {
+      width: 300px;
+    }
 
- .output {
-     display: none;
-     flex-direction: column;
-     gap: 30px;
-     justify-content: center;
- }
+    .output {
+      display: none;
+      flex-direction: column;
+      gap: 30px;
+      justify-content: center;
+    }
 
- .output h1 {
-     color: red;
-     font-family: sans-serif;
- }
+    .output h1 {
+      color: red;
+      font-family: sans-serif;
+    }
 
- .output .result {
-     font-family: sans-serif;
-     color: yellow;
-     font-size: 20px;
-     font-weight: bolder;
- }
+    .output .result {
+      font-family: sans-serif;
+      color: yellow;
+      font-size: 20px;
+      font-weight: bolder;
+    }
 
- .input {
-     display: none;
-     margin-top: 300px;
- }
+    .input {
+      display: none;
+      margin-top: 300px;
+    }
 
- .input .First,
- .input .Operation,
- .input .Second {
-     height: 60px;
-     width: 80px;
-     border: none;
-     outline: none;
-     border-radius: 15px;
- }
- .btn{
-    display: flex;
-    justify-content: center;
- }
- .work-button{
-    margin-top: 30px;
-    border-radius: 30px;
-    height: 40px;
-    width: 100px;
-    
- }
- .reuse{
-    margin: auto;
-    height: 30px;
-    width: 100px;
-    border-radius: 15px;
- }
-  </style> 
+    .input .First,
+    #Operation,
+    .input .Second {
+      height: 60px;
+      width: 80px;
+      border: none;
+      outline: none;
+      border-radius: 15px;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+    }
+
+    .work-button {
+      margin-top: 30px;
+      border-radius: 30px;
+      height: 40px;
+      width: 100px;
+
+    }
+
+    .reuse {
+      margin: auto;
+      height: 30px;
+      width: 100px;
+      border-radius: 15px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
+  <div class="container">
 
-        <h1 class="calculation">if you want to use the calculator click below... and It will give you result as soon as possible</h1>
+    <h1 class="calculation">if you want to use the calculator click below... and It will give you result as soon as
+      possible</h1>
 
-        <div class="input">
-            <input class="First" type="number" placeholder="First Num">
-            <input class="Operation" type="text" placeholder="Operation">
-            <input class="Second" type="number" placeholder="Second Num">
-            <div class="btn">
-                <button class="work-button">click to result</button>
-            </div>
-        </div>
-
-        <div class="output">
-           
-        </div>
-
-        <button class="click">click to use the calculator in your page</button>
+    <div class="input">
+      <input class="First" type="number" placeholder="First Num">
+      <select name="Operation" id="Operation">
+        <option value="select">Select_Operation</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="**">**</option>
+        <option value="%">%</option>
+      </select>
+      <input class="Second" type="number" placeholder="Second Num">
+      <div class="btn">
+        <button class="work-button">click to result</button>
+      </div>
     </div>
+
+    <div class="output">
+
+    </div>
+
+    <button class="click">click to use the calculator in your page</button>
+  </div>
   <script>
 
     document.querySelector(".click").addEventListener("click", () => {
-  document.querySelector('.input').style.display = 'block';
-  document.querySelector('body').style.backgroundColor = 'black';
-  document.querySelector('.calculation').style.display = 'none';
-  document.querySelector('.click').style.display = 'none';
-})
+      document.querySelector('.input').style.display = 'block';
+      document.querySelector('body').style.backgroundColor = 'black';
+      document.querySelector('.calculation').style.display = 'none';
+      document.querySelector('.click').style.display = 'none';
+    })
+    let selectValue = '';
+    let selectElement = document.querySelector('#Operation');
+    selectElement.addEventListener('change', () => {
+      selectValue = selectElement.value;
+    })
 
-document.querySelector('.work-button').addEventListener('click', () => {
-  document.querySelector('.input').style.display = 'none';
-  let a = Number(document.querySelector(".First").value);
-  let b = Number(document.querySelector(".Second").value);
-  let C = document.querySelector(".Operation").value;
+    document.querySelector('.work-button').addEventListener('click', () => {
 
-  let Output = document.querySelector(".output");
-  Output.style.display = 'flex';
+      let p = (document.querySelector(".First").value);
+      let q = (document.querySelector(".Second").value);
+      let c = selectValue;
+      console.log(c)
+      if (p === '' || q === '' || (c === '')) {
+        alert('please insert both Number and select operation first!!')
+        return;
+      }
+      let a= Number(p);
+      let b= Number(q);
+      document.querySelector('.input').style.display = 'none';
 
-  if (!isNaN(a) && !isNaN(b) && (C == "+" || C == "-" || C == "*" || C == "/" || C == "**" || C == '%')) {
-    if (C == "+") {
-      Output.innerHTML = `
-          <h1>The Result of this Operation is  ${a} ${C} ${b} = ${a + b}</h1>
+      let Output = document.querySelector(".output");
+      Output.style.display = 'flex';
+
+      console.log(c);
+      if (!isNaN(a) && !isNaN(b) && (c == "+" || c == "-" || c == "*" || c == "/" || c == "**" || c == '%')) {
+        if (c == "+") {
+          Output.innerHTML = `
+          <h1>The Result of this Operation is  ${a} ${c} ${b} = ${a + b}</h1>
            <button class="reuse">click to Reuse</button>
           `}
-    else if (C == "-") {
-      Output.innerHTML = `
-           <h1>The Result of this Operation is ${a} ${C} ${b} = ${a - b} </h1>
+        else if (c == "-") {
+          Output.innerHTML = `
+           <h1>The Result of this Operation is ${a} ${c} ${b} = ${a - b} </h1>
            <button class="reuse">click to Reuse</button>
           `
-    }
-    else if (C == "*") {
-      Output.innerHTML = `
-           <h1>The Result of this Operation is ${a} ${C} ${b} = ${a * b} </h1>
+        }
+        else if (c == "*") {
+          Output.innerHTML = `
+           <h1>The Result of this Operation is ${a} ${c} ${b} = ${a * b} </h1>
           <button class="reuse">click to Reuse</button>
           `
-    }
-    else if (C == "/") {
-      Output.innerHTML = `
-           <h1>The Result of this Operation is ${a} ${C} ${b} = ${a / b} </h1>
+        }
+        else if (c == "/") {
+          Output.innerHTML = `
+           <h1>The Result of this Operation is ${a} ${c} ${b} = ${a / b} </h1>
             <button class="reuse">click to Reuse</button>
           `
-    }
-    else if (C == "**") {
-      Output.innerHTML = `
-           <h1>The Result of this Operation is ${a} ${C} ${b} = ${a ** b} </h1>
+        }
+        else if (c == "**") {
+          Output.innerHTML = `
+           <h1>The Result of this Operation is ${a} ${c} ${b} = ${a ** b} </h1>
            <button class="reuse">click to Reuse</button>
           `
-    }
-    else if (C == "%") {
-      Output.innerHTML = `
-           <h1>The Result of this Operation is ${a} ${C} ${b} = ${a % b}</h1>
+        }
+        else if (c == "%") {
+          Output.innerHTML = `
+           <h1>The Result of this Operation is ${a} ${c} ${b} = ${a % b}</h1>
            <button class="reuse">click to Reuse</button>
           `
-    }
-    else {
-      console.log('You have given the wrong Operation')
-    }
-  }
-  else {
-    Output.innerHTML = `<h1>Something went wrong</h1>
+        }
+        else {
+          console.log('You have given the wrong Operation')
+        }
+      }
+      else {
+        Output.innerHTML = `<h1>Something went wrong</h1>
                               <button class="reuse">click to Reuse</button>`;
-    console.log(Error);
-  }
-  document.querySelector(".click").style.display = 'none';
-  document.querySelector
-  let reuse_button = document.querySelector(".reuse");
-  reuse_button.addEventListener('click', () => {
-    Output.style.display = 'none';
-    document.querySelector('.input').style.display = 'block';
-    document.querySelector(".First").value = '';
-    document.querySelector(".Second").value = '';
-    document.querySelector(".Operation").value = '';
-  })
+        console.log(Error);
+      }
+      document.querySelector(".click").style.display = 'none';
+      document.querySelector
+      let reuse_button = document.querySelector(".reuse");
+      reuse_button.addEventListener('click', () => {
+        Output.style.display = 'none';
+        document.querySelector('.input').style.display = 'block';
+        document.querySelector(".First").value = '';
+        document.querySelector(".Second").value = '';
+        document.querySelector('#Operation').value = 'select';
+        selectValue = '';
+      })
 
-});
+    });
 
 
   </script>
